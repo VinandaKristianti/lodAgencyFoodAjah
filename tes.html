@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tes lodAgency</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div class="canvas">
+        <div class="row">
+            <div class="col">
+                <p class="logo">Food Ajah</p>
+                <div >
+                    <div style="margin-top: 120px;">
+                        <p class="detail-menu price" id="harga">Rp 44000</p>
+                        <p class="detail-menu title" id="nama">Dada Ayam Daun Selada</p>
+                        <p class="detail-menu exp" id="detail">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod consectetur odio ducimus laboriosam vero dolores?</p>
+                    </div>
+                    <div class="detail-menu button elemen-hover">
+                        <p class="text-buy">
+                            BELI SEKARANG
+                        </p>
+                    </div>
+                    <p class="detail-menu other">Butuh Menu Lain?</p>
+                </div>
+            </div>
+            <div class="col" style="margin-left: -30%;">
+                <div class="eclipse">
+                    <div class="grid-container">
+                        <div class="menu" style="width: 100px;margin-left: 100px;">Sarapan</div>
+                        <div class="menu" style="width: 100px; margin-left: -60px;">Makan Siang</div>
+                        <div class="menu" style="width: 130px;margin-left: -200px;">Makan Malam</div>
+                        <img src="asset/bag-icon.png" style="margin-top: 40px;width: 20px;height: 22px;">
+                    </div>
+                    <svg width="450" height="200" xmlns="http://www.w3.org/2000/svg" style="margin-left: 26%; margin-top: 15%;">
+                        <path d="M0,190 A225,190 0 0,1 450,190" fill="none" stroke="rgba(255, 146, 44, 1)" stroke-dasharray="10,15" stroke-width="2"/>
+                    </svg>
+                    <div class="row">
+                        <div class="col" style="margin-left: 160px;">
+                            <div class="container" style="position: relative;">
+                                <div style="margin-top: -13%; margin-left: 10%;" class="card cropped-image-left">
+                                    <img src="asset/salad-ayam.png">
+                                </div>
+                                <div style="margin-top: -44%; margin-left: 25%;" class="card">
+                                    <img src="asset/salad-timun.png">
+                                </div>
+                                <div style="margin-top: -30%;margin-left: 55%;" class="card">
+                                    <img src="asset/salad-selada.png">
+                                </div>
+            
+                                <div style="margin-top: -10%;margin-left: 85%;" class="card">
+                                    <img src="asset/salad-ubi.png">
+                                </div>
+                                <div style="margin-left: 100%; margin-top: 8%;" class="card cropped-image-right">
+                                    <img src="asset/salad-pangsit.png" >
+                                </div>
+                            </div>
+
+                            <div style="width: 900px; margin-top: -30%; margin-left: 37%;">
+                                <img id="gambar" src="asset/salad-selada.png" style="width: 288px;height: 288px;">
+                                
+                                <div class="row" style="margin-top: -10%; margin-left: -110px;">
+                                    <div class="col">
+                                        <button class="btn-left-right elemen-hover" onclick="rotateCardsLeft()">
+                                            <i class="material-icons position-icon">arrow_back</i>
+                                        </button>
+                                    </div>
+                                    <div class="col" style="margin-left: -40px;">
+                                        <button class="btn-left-right elemen-hover" onclick="rotateCardsRight()">
+                                            <i class="material-icons position-icon">arrow_forward</i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    let data =[
+            {
+                "nama":"Salad Ayam Kacang Tahu",
+                "harga":"Rp 45000",
+                "detail":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod consectetur odio ducimus laboriosam vero dolores?",
+                "picture":"salad-ayam.png"
+            },
+            {
+                "nama":"Salad Timun Dan Udang Segar",
+                "harga":"Rp 23000",
+                "detail":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod consectetur odio ducimus laboriosam vero dolores?",
+                "picture":"salad-timun.png"
+            },
+            {
+                "nama":"Dada Ayam Daun Selada",
+                "harga":"Rp 44000",
+                "detail":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod consectetur odio ducimus laboriosam vero dolores?",
+                "picture":"salad-selada.png"
+            },
+            {
+                "nama":"Salad Ubi Ungu Bombay",
+                "harga":"Rp 36000",
+                "detail":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod consectetur odio ducimus laboriosam vero dolores?",
+                "picture":"salad-ubi.png"
+            },
+            {
+                "nama":"Pangsit Rebus Sayur",
+                "harga":"Rp 40000",
+                "detail":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod consectetur odio ducimus laboriosam vero dolores?",
+                "picture":"salad-pangsit.png"
+            }
+    ]
+    let currentIndex = 2;
+    const cards = document.querySelectorAll('.card');
+
+    function rotateCardsLeft() {
+        
+        let temp = cards[cards.length - 1].innerHTML;
+        for (let i = cards.length - 1; i > 0; i--) {
+            cards[i].innerHTML = cards[i - 1].innerHTML;
+        }
+        cards[0].innerHTML = temp;
+        //card besar
+        //default index = 2
+        var gambar = document.getElementById("gambar");
+        
+        currentIndex = (currentIndex - 1+ data.length) % data.length;
+        //console.log("index brp", currentIndex);
+        gambar.src = "asset/"+ data[currentIndex].picture+"";
+
+        //data salad
+        document.getElementById("harga").textContent = data[currentIndex].harga;
+        document.getElementById("nama").textContent = data[currentIndex].nama;
+        document.getElementById("detail").textContent = data[currentIndex].detail;
+    }
+
+    function rotateCardsRight() {
+        //card kecil di atas
+        let temp = cards[0].innerHTML;
+        
+        //urutan asc 0-4
+        for (let i = 0; i < cards.length - 1; i++) {
+            cards[i].innerHTML = cards[i + 1].innerHTML;
+            //console.log("cards[i]", cards[i].innerHTML);
+        }
+        cards[cards.length - 1].innerHTML = temp;
+
+        var gambar = document.getElementById("gambar");
+        currentIndex = (currentIndex + 1) % data.length;
+        //console.log("index brp", currentIndex);
+        gambar.src = "asset/"+ data[currentIndex].picture;
+        console.log("nama png",gambar.src);
+        //data salad
+        console.log("semua", data);
+        document.getElementById("harga").textContent = data[currentIndex].harga;
+        document.getElementById("nama").textContent = data[currentIndex].nama;
+        document.getElementById("detail").textContent = data[currentIndex].detail;
+    }
+</script>
